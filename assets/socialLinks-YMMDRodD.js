@@ -1,1 +1,0 @@
-const e={github:void 0,linkedin:void 0,email:void 0,repositories:{projectOne:void 0,projectTwo:void 0,projectThree:void 0,projectFour:void 0},display:{github:void 0,linkedin:void 0,email:void 0}};export{e as s};
