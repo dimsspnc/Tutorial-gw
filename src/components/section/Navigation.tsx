@@ -113,7 +113,7 @@ const Navigation = () => {
             outline: 'none',
             WebkitTextFillColor: themeColors.colors.pink[500]
           }}
-          onClick={() => window.location.href = '/'}
+          onClick={() => scrollToSection('about')}
           aria-label="Your Name - Go to homepage">
           DiMZzz Pnc
         </button>
@@ -126,7 +126,7 @@ const Navigation = () => {
               onClick={() => scrollToSection(tab.id)}
               className={`nav-tab ${activeTab === tab.id ? 'active' : ''}`}
               style={{ color: themeColors.text.accent }}
-              aria-label={`Navigate to ${tab.label} section`}
+              aria-label={`Maps to ${tab.label} section`}
             >
               {tab.label}
             </button>
@@ -249,7 +249,7 @@ const Navigation = () => {
               }
             }}
             onFocus={(e) => e.currentTarget.blur()}
-            aria-label={`Navigate to ${tab.label} section`}
+            aria-label={`Maps to ${tab.label} section`}
           >
             {tab.label}
           </button>

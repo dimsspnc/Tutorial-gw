@@ -1,16 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import AsciiMorphText from '../AsciiMorphText';
 import TypewriterCarousel from '../TypewriterCarousel';
 import { useDarkMode } from '../../contexts/DarkModeContext';
 import { useThemeColors, withAlpha } from '../../hooks/useThemeColors';
 import { aboutMeJournalWebp800, aboutMeJournalWebp400, profile1, profile2, profile3, stickers as stickerImages } from '../../assets';
 
-
 const About = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [asciiText, setAsciiText] = useState('');
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -30,39 +26,6 @@ const About = () => {
     { src: profile2, caption: "photo 2" },
     { src: profile3, caption: "photo 3" }
   ];
-
-  const fullAsciiArt = `⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⢠⡾⠲⠶⣤⣀⣠⣤⣤⣤⡿⠛⠿⡴⠾⠛⢻⡆⠀⠀⠀
-⠀⠀⠀⣼⠁⠀⠀⠀⠉⠁⠀⢀⣿⠐⡿⣿⠿⣶⣤⣤⣷⡀⠀⠀
-⠀⠀⠀⢹⡶⠀⠀⠀⠀⠀⠀⠈⢯⣡⣿⣿⣀⣰⣿⣦⢂⡏⠀⠀
-⠀⠀⢀⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠹⣍⣭⣾⠁⠀⠀
-⠀⣀⣸⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣸⣧⣤⡀
-⠈⠉⠹⣏⡁⠀⢸⣿⠀⠀⠀⢀⡀⠀⠀⠀⣿⠆⠀⢀⣸⣇⣀⠀
-⠀⠐⠋⢻⣅⡄⢀⣀⣀⡀⠀⠯⠽⠂⢀⣀⣀⡀⠀⣤⣿⠀⠉⠀
-⠀⠀⠴⠛⠙⣳⠋⠉⠉⠙⣆⠀⠀⢰⡟⠉⠈⠙⢷⠟⠈⠙⠂⠀
-⠀⠀⠀⠀⠀⢻⣄⣠⣤⣴⠟⠛⠛⠛⢧⣤⣤⣀⡾⠀⠀⠀⠀⠀`;
-
-  // Typewriter effect for ASCII art
-  useEffect(() => {
-    let currentIndex = 0;
-    const typingSpeed = 3; // Speed in milliseconds
-
-    const typeWriter = () => {
-      if (currentIndex < fullAsciiArt.length) {
-        setAsciiText(fullAsciiArt.substring(0, currentIndex + 1));
-        currentIndex++;
-        setTimeout(typeWriter, typingSpeed);
-      }
-    };
-
-    // Start typing after a small delay
-    const startDelay = setTimeout(() => {
-      typeWriter();
-    }, 500);
-
-    return () => clearTimeout(startDelay);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Only run once on mount
 
   useEffect(() => {
     let ticking = false;
@@ -210,36 +173,33 @@ const About = () => {
       {/* Hero Section */}
       <div className="py-10 md:py-20">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col md:flex-row justify-between items-start max-w-6xl mx-auto gap-8">
-            <div className="text-left w-full md:w-auto">
-              <div className="ascii-container justify-start text-3xl md:text-4xl lg:text-5xl">
-                <AsciiMorphText text="Hi, I'm Your Name" />
+          <div className="flex flex-col md:flex-row justify-center items-center max-w-6xl mx-auto gap-8">
+            <div className="text-center w-full">
+              <div className="hero-title text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style={{ color: themeColors.text.primary }}>
+                Hi, I'm DiMZzz Pnc
               </div>
-              <div className="hero-subtitle justify-start text-base md:text-lg lg:text-xl mt-2">
-                <div className="flex flex-wrap items-center justify-start">
+              <div className="hero-subtitle justify-center text-base md:text-lg lg:text-xl mt-2">
+                <div className="flex flex-wrap items-center justify-center">
                   <span className={isDarkMode ? 'hero-subtitle-dark' : 'hero-subtitle-light'}>I am a&nbsp;</span>
                   <TypewriterCarousel roles={roles} className={isDarkMode ? 'hero-subtitle-dark' : 'hero-subtitle-light'} />
                 </div>
               </div>
-              <div className="hero-buttons flex justify-start gap-3 mt-4">
+              <div className="hero-buttons flex justify-center gap-3 mt-6">
                 <button
                   className="hero-action-btn text-sm md:text-base px-4 py-2 md:px-5 md:py-2.5"
                   onClick={() => {
-                    window.open('/resume.pdf', '_blank');
+                    window.open('/Tutorial-gw/resume.pdf', '_blank');
                   }}
                 >
                   Resume →
                 </button>
-                <Link
-                  to="/contact"
+                <a
+                  href="mailto:dimasponcoprabowod@gmail.com"
                   className="hero-action-btn text-sm md:text-base px-4 py-2 md:px-5 md:py-2.5"
                 >
                   Contact →
-                </Link>
+                </a>
               </div>
-            </div>
-            <div className="hidden md:block" style={{ fontSize: '0.8rem', lineHeight: '1', fontFamily: 'monospace', minHeight: '150px', color: isDarkMode ? themeColors.primary : themeColors.colors.pink[500] }}>
-              <pre>{asciiText}</pre>
             </div>
           </div>
         </div>
